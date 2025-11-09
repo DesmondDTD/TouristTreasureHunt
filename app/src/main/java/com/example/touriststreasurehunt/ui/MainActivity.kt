@@ -29,7 +29,7 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-// test
+
 @Composable
 private fun MainScreen(onStart: (List<Objective>) -> Unit) {
     var coffee by remember { mutableStateOf(false) }

@@ -26,6 +26,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.FinishActivity" android:exported="false" />
 
         <!-- Non-launcher activity -->
         <activity
