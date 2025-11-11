@@ -1,0 +1,77 @@
+{
+  "version": 1,
+  "region": "Oregon Coast",
+  "items": [
+    {
+      "slug": "cannon_beach_haystack_rock",
+      "displayName": "Cannon Beach — Haystack Rock",
+      "lat": null,
+      "lng": null,
+      "hints": [
+        {
+          "tier": 1,
+          "proximity": "far",
+          "text": "A seaside town famed for film shots and a giant 
+monolith rising from the surf."
+        },
+        {
+          "tier": 2,
+          "proximity": "near",
+          "text": "You’ll see tufted puffin nesting signs in spring and 
+summer around tidepools."
+        },
+        {
+          "tier": 3,
+          "proximity": "very_near",
+          "text": "Face the 235-foot sea stack; your spot is where the 
+basalt meets low-tide starfish."
+        }
+      ]
+    },
+    {
+      "slug": "heceta_head_lighthouse",
+      "displayName": "Heceta Head Lighthouse",
+      "lat": null,
+      "lng": null,
+      "hints": [
+        {
+          "tier": 1,
+          "proximity": "far",
+          "text": "A cliff-top beacon between Florence and Yachats that 
+guards a sweeping cove."
+        },
+        {
+          "tier": 2,
+          "proximity": "near",
+          "text": "Climb toward the keeper’s house; gulls circle and the 
+beam sweeps the trees."
+        },
+        {
+          "tier": 3,
+          "proximity": "very_near",
+          "text": "Stand by the white tower railing—listen for the horn 
+and watch the Fresnel lens."
+        }
+      ]
+    },
+    {
+      "slug": "thors_well",
+      "displayName": "Thor’s Well (Cape Perpetua)",
+      "lat": null,
+      "lng": null,
+      "hints": [
+        {
+          "tier": 1,
+          "proximity": "far",
+          "text": "A dramatic sinkhole on black lava rock that inhales and 
+explodes with the tide."
+        },
+        {
+          "tier": 2,
+          "proximity": "near",
+          "text": "Follow the Spouting Horn signs; salty spray mists the 
+viewpoint."
+        },
+        {
+          "t
+
