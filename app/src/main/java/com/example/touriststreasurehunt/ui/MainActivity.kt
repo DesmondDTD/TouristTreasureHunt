@@ -13,6 +13,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.example.touriststreasurehunt.model.*
 import com.google.gson.Gson
+import androidx.compose.ui.platform.LocalContext
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,6 +33,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 private fun MainScreen(onStart: (List<Objective>) -> Unit) {
+    val context = LocalContext.current
     var coffee by remember { mutableStateOf(false) }
     var hike by remember { mutableStateOf(false) }
     var rain by remember { mutableStateOf(false) }
@@ -65,6 +67,18 @@ private fun MainScreen(onStart: (List<Objective>) -> Unit) {
             onStart(sel)
         }) {
             Text("Start Hunt")
+        }
+
+        Spacer(Modifier.height(8.dp))
+
+        // New About button
+        Button(
+            onClick = {
+                context.startActivity(Intent(context, AboutActivity::class.java))
+            },
+            modifier = Modifier.padding(top = 8.dp)
+        ) {
+            Text("About")
         }
     }
 }
