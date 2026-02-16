@@ -19,3 +19,24 @@ data class Hunt(
     val objectives: List<Objective>,
     val destinations: List<Destination>
 )
+
+// JSON models
+data class LocationHintsFile(
+    val version: Int,
+    val region: String,
+    val items: List<LocationHintItem>
+)
+
+data class LocationHintItem(
+    val slug: String,
+    val displayName: String,
+    val lat: Double,
+    val lng: Double,
+    val hints: List<LocationHint>
+)
+
+data class LocationHint(
+    val tier: Int,
+    val proximity: String,
+    val text: String
+)

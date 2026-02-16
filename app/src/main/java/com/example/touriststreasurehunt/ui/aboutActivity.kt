@@ -59,7 +59,7 @@ fun AboutScreen(onBack: () -> Unit) {
             )
             Spacer(modifier = Modifier.height(16.dp))
             Text(
-                text = "Version 1.1",
+                text = "Version 1.2",
                 style = MaterialTheme.typography.bodyMedium,
                 fontSize = 16.sp
             )
