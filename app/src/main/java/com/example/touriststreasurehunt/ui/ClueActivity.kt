@@ -59,6 +59,7 @@ class ClueActivity : ComponentActivity() {
 
         val huntJson = intent.getStringExtra("hunt_json") ?: ""
         val hunt = Gson().fromJson(huntJson, Hunt::class.java)
+        val progressManager = com.example.touriststreasurehunt.data.ProgressManager(this)
 
         setContent {
             MaterialTheme {
@@ -74,6 +75,7 @@ class ClueActivity : ComponentActivity() {
 
                 ClueScreen(
                     hunt = hunt,
+                    progressManager = progressManager,
                     lastLocationProvider = { _lastLocation },
                     requestPermission = {
                         val shouldExplain = ActivityCompat.shouldShowRequestPermissionRationale(
@@ -173,17 +175,32 @@ class ClueActivity : ComponentActivity() {
 @Composable
 private fun ClueScreen(
     hunt: Hunt,
+    progressManager: com.example.touriststreasurehunt.data.ProgressManager,
     lastLocationProvider: () -> Location?,
     requestPermission: () -> Unit,
     openSettings: () -> Unit,
     onComplete: () -> Unit,
     hasPermission: Boolean
 ) {
-    var destIdx by remember { mutableStateOf(0) }
-    var tier by remember { mutableStateOf(1) }
-    var fakeDistance by remember { mutableStateOf(4000) }   // Sim
+    val savedDestination = progressManager.getCurrentDestination()
+    val savedClueIndex = progressManager.getCurrentClueIndex()
 
-    val d: Destination = hunt.destinations[destIdx]
+    var destIdx by remember {
+        mutableStateOf(
+            hunt.destinations.indexOfFirst { it.name == savedDestination }
+                .takeIf { it >= 0 } ?: 0
+        )
+    }
+
+    var tier by remember {
+        mutableStateOf(
+            if (savedClueIndex > 0) savedClueIndex else 1
+        )
+    }
+
+    var fakeDistance by remember { mutableStateOf(4000) }
+
+        val d: Destination = hunt.destinations[destIdx]
     val currentClue = d.clues.first { it.tier == tier }
     val maxTier = d.clues.maxOf { it.tier }
 
@@ -192,22 +209,41 @@ private fun ClueScreen(
             tier++
         } else {
             if (destIdx < hunt.destinations.lastIndex) {
-                destIdx++; tier = 1; fakeDistance = 4000
+                destIdx++
+                tier = 1
+                fakeDistance = 4000
             } else {
+                progressManager.clearProgress()
                 onComplete()
+                return
             }
         }
+
+        // SAVE progress every time state changes
+        progressManager.saveProgress(
+            destinationName = hunt.destinations[destIdx].name,
+            clueIndex = tier
+        )
     }
 
     // Calc distance from last known location
     val lastLoc = lastLocationProvider()
-    val distanceMeters: Float? = remember(lastLoc, destIdx, tier) {
-        if (lastLoc == null) null else FloatArray(1).also {
-            Location.distanceBetween(lastLoc.latitude, lastLoc.longitude, d.lat, d.lon, it)
-        }[0]
-    }
+        val distanceMeters = remember(lastLoc, destIdx, tier) {
+            if (lastLoc == null) null
+            else {
+                FloatArray(1).also {
+                    Location.distanceBetween(
+                        lastLoc.latitude,
+                        lastLoc.longitude,
+                        d.lat,
+                        d.lon,
+                        it
+                    )
+                }[0]
+            }
+        }
 
-    // Promote on real GPS within band proximity
+        // Promote on real GPS within band proximity
     LaunchedEffect(distanceMeters, currentClue) {
         if (distanceMeters != null && distanceMeters <= currentClue.proximityMeters) {
             promote()
