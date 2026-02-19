@@ -16,19 +16,49 @@ import com.example.touriststreasurehunt.data.HuntRepository
 import com.example.touriststreasurehunt.model.*
 import com.google.gson.Gson
 import androidx.compose.runtime.produceState
+import com.example.touriststreasurehunt.data.ProgressManager
 
 class MainActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val progressManager = ProgressManager(this)
+        val savedDestination = progressManager.getCurrentDestination()
+        val savedClueIndex = progressManager.getCurrentClueIndex()
+
+        // 🔹 If saved progress exists → auto resume hunt
+        if (savedDestination != null && savedClueIndex > 0) {
+
+            val repo = HuntRepository(this)
+            val destinations = repo.loadDestinations()
+
+            val hunt = Hunt(
+                objectives = MockRepo.objectives,
+                destinations = destinations
+            )
+
+            val intent = Intent(this, ClueActivity::class.java)
+                .putExtra("hunt_json", Gson().toJson(hunt))
+
+            startActivity(intent)
+            finish()
+            return
+        }
+
+        // 🔹 Normal start screen
         setContent {
             MaterialTheme {
                 MainScreen { selected, destinations ->
+
                     val hunt = Hunt(
                         objectives = selected.ifEmpty { listOf(MockRepo.objectives[0]) },
                         destinations = destinations
                     )
+
                     val intent = Intent(this, ClueActivity::class.java)
                         .putExtra("hunt_json", Gson().toJson(hunt))
+
                     startActivity(intent)
                 }
             }
