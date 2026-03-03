@@ -10,6 +10,7 @@ class ProgressManager(context: Context) {
     companion object {
         private const val KEY_CURRENT_DESTINATION = "current_destination"
         private const val KEY_CURRENT_CLUE_INDEX = "current_clue_index"
+        private const val KEY_SELECTED_OBJECTIVES = "selected_objectives"
     }
 
     fun saveProgress(destinationName: String, clueIndex: Int) {
@@ -30,5 +31,13 @@ class ProgressManager(context: Context) {
 
     fun clearProgress() {
         prefs.edit().clear().apply()
+    }
+
+    fun saveSelectedObjectives(ids: List<String>) {
+        prefs.edit().putStringSet(KEY_SELECTED_OBJECTIVES, ids.toSet()).apply()
+    }
+
+    fun getSelectedObjectives(): List<String> {
+        return prefs.getStringSet(KEY_SELECTED_OBJECTIVES, emptySet())?.toList() ?: emptyList()
     }
 }

@@ -16,26 +16,35 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TouristsTreasureHunt" >
 
-        <!-- New About screen -->
-        <activity android:name=".ui.AboutActivity" android:exported="false" />
-
+        <!-- Intro screen -->
         <activity
-            android:name=".ui.MainActivity"
+            android:name=".ui.IntroActivity"
             android:exported="true"
-            android:theme="@style/Theme.TouristsTreasureHunt" >
+            android:theme="@style/Theme.TouristsTreasureHunt">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.FinishActivity" android:exported="false" />
 
-        <!-- Non-launcher activity -->
+        <!-- Objective Picker-->
+        <activity
+            android:name=".ui.MainActivity"
+            android:exported="false"
+            android:theme="@style/Theme.TouristsTreasureHunt" />
+
+        <!-- About -->
+        <activity
+            android:name=".ui.AboutActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.FinishActivity"
+            android:exported="false" />
+
         <activity
             android:name=".ui.ClueActivity"
             android:exported="false" />
-
 
     </application>
 

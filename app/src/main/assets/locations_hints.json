@@ -7,6 +7,7 @@
       "displayName": "Cannon Beach — Haystack Rock",
       "lat": 45.88472,
       "lng": -123.96694,
+      "objectives": ["scenic"],
       "hints": [
         {
           "tier": 1,
@@ -30,6 +31,7 @@
       "displayName": "Heceta Head Lighthouse",
       "lat": 44.1374,
       "lng": -124.1281,
+      "objectives": ["history"],
       "hints": [
         {
           "tier": 1,
@@ -53,6 +55,7 @@
       "displayName": "Thor’s Well (Cape Perpetua)",
       "lat": 44.27842,
       "lng": -124.1135,
+      "objectives": ["adventure"],
       "hints": [
         {
           "tier": 1,

@@ -28,13 +28,20 @@ class MainActivity : ComponentActivity() {
         val savedClueIndex = progressManager.getCurrentClueIndex()
 
         // 🔹 If saved progress exists → auto resume hunt
-        if (savedDestination != null && savedClueIndex > 0) {
+        if (savedDestination != null) {
 
             val repo = HuntRepository(this)
             val destinations = repo.loadDestinations()
 
+            val savedObjectiveIds = progressManager.getSelectedObjectives()
+            val savedObjectives = if (savedObjectiveIds.isEmpty()) {
+                emptyList()
+            } else {
+                MockRepo.objectives.filter { it.id in savedObjectiveIds }
+            }
+
             val hunt = Hunt(
-                objectives = MockRepo.objectives,
+                objectives = savedObjectives.ifEmpty { listOf(MockRepo.objectives[0]) },
                 destinations = destinations
             )
 
@@ -75,49 +82,65 @@ private fun MainScreen(onStart: (List<Objective>, List<Destination>) -> Unit) {
         value = repo.loadDestinations()
     }
 
-    var coffee by remember { mutableStateOf(false) }
-    var hike by remember { mutableStateOf(false) }
-    var rain by remember { mutableStateOf(false) }
+    var scenic by remember { mutableStateOf(false) }
+    var history by remember { mutableStateOf(false) }
+    var adventure by remember { mutableStateOf(false) }
 
     Column(Modifier.padding(16.dp)) {
         Text("Choose objectives", fontWeight = FontWeight.Bold)
         Spacer(Modifier.height(8.dp))
 
         Row(verticalAlignment = androidx.compose.ui.Alignment.CenterVertically) {
-            Checkbox(checked = coffee, onCheckedChange = { coffee = it })
-            Text("Coffee")
+            Checkbox(checked = scenic, onCheckedChange = { scenic = it })
+            Text("Scenic")
         }
         Row(verticalAlignment = androidx.compose.ui.Alignment.CenterVertically) {
-            Checkbox(checked = hike, onCheckedChange = { hike = it })
-            Text("Short Hike")
+            Checkbox(checked = history, onCheckedChange = { history = it })
+            Text("History")
         }
         Row(verticalAlignment = androidx.compose.ui.Alignment.CenterVertically) {
-            Checkbox(checked = rain, onCheckedChange = { rain = it })
-            Text("Rainy Day")
+            Checkbox(checked = adventure, onCheckedChange = { adventure = it })
+            Text("Adventure")
         }
 
         Spacer(Modifier.height(12.dp))
         Button(
             onClick = {
                 val sel = buildList {
-                    if (coffee) add(MockRepo.objectives[0])
-                    if (hike) add(MockRepo.objectives[1])
-                    if (rain) add(MockRepo.objectives[2])
+                    if (scenic) add(MockRepo.objectives.first { it.id == "scenic" })
+                    if (history) add(MockRepo.objectives.first { it.id == "history" })
+                    if (adventure) add(MockRepo.objectives.first { it.id == "adventure" })
                 }
-                onStart(sel, destinations)
+                // Save for resume
+                ProgressManager(context).saveSelectedObjectives(sel.map { it.id })
+
+                val filtered = filterDestinationsByObjectives(
+                    all = destinations,
+                    selected = sel,
+                    allObjectiveCount = MockRepo.objectives.size
+                )
+                onStart(sel, filtered)
             },
             enabled = destinations.isNotEmpty()
         ) {
             Text("Start Hunt")
         }
+    }
+}
 
-        Spacer(Modifier.height(8.dp))
+// Objective logic
+private fun filterDestinationsByObjectives(
+    all: List<Destination>,
+    selected: List<Objective>,
+    allObjectiveCount: Int
+): List<Destination> {
+    // None or all = include everything
+    if (selected.isEmpty() || selected.size == allObjectiveCount) return all
 
-        Button(
-            onClick = { context.startActivity(Intent(context, AboutActivity::class.java)) },
-            modifier = Modifier.padding(top = 8.dp)
-        ) {
-            Text("About")
-        }
+    val selectedIds = selected.map { it.id }.toSet()
+
+    // Include if it matches any selected objective
+    return all.filter { dest ->
+        dest.objectiveTags.any { it in selectedIds }
     }
 }

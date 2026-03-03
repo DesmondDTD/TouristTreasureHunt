@@ -4,9 +4,9 @@ object MockRepo {
 
     // Personal preferences
     val objectives = listOf(
-        Objective("coffee", "Coffee"),
-        Objective("hike", "Short Hike"),
-        Objective("rain", "Rainy Day")
+        Objective("scenic", "Scenic View"),
+        Objective("history", "History / Landmark"),
+        Objective("adventure", "Adventure / Nature")
     )
 
     // Examples

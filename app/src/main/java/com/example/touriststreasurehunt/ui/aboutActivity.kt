@@ -73,7 +73,7 @@ fun AboutScreen(onBack: () -> Unit) {
                     and follow progressive clues that reveal each destination 
                     as you get closer — either with real GPS or manual reveal.
 
-                    Developed as a Capstone Project for CS 461.
+                    Developed as a Capstone Project for CS 461-463.
                 """.trimIndent(),
                 style = MaterialTheme.typography.bodyMedium,
                 lineHeight = 22.sp,

@@ -197,10 +197,16 @@ private fun ClueScreen(
             if (savedClueIndex > 0) savedClueIndex else 1
         )
     }
+    LaunchedEffect(destIdx, tier) {
+        progressManager.saveProgress(
+            destinationName = hunt.destinations[destIdx].name,
+            clueIndex = tier
+        )
+    }
 
     var fakeDistance by remember { mutableStateOf(4000) }
 
-        val d: Destination = hunt.destinations[destIdx]
+    val d: Destination = hunt.destinations[destIdx]
     val currentClue = d.clues.first { it.tier == tier }
     val maxTier = d.clues.maxOf { it.tier }
 
@@ -269,23 +275,10 @@ private fun ClueScreen(
         }
 
         Spacer(Modifier.height(24.dp))
-        val hasFix = lastLocationProvider() != null
-        when {
-            !hasPermission -> {
-                Row {
-                    Button(onClick = requestPermission) { Text("Enable Location") }
-                    Spacer(Modifier.width(8.dp))
-                    TextButton(onClick = openSettings) { Text("Open Settings") }
-                }
-            }
-            !hasFix -> {
-                Text("Getting location…")  // Has perm, waiting on location grab
-            }
-            else -> {
-                // Show nothing since we got perms and location
-            }
+        if (!hasPermission) {
+            Text("Location is optional. Use Manual Reveal to continue.", style = MaterialTheme.typography.bodySmall)
+        } else if (lastLocationProvider() == null) {
+            Text("Getting location…", style = MaterialTheme.typography.bodySmall)
         }
-
-
     }
 }

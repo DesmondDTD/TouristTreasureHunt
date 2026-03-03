@@ -20,6 +20,7 @@ class HuntRepository(private val context: Context) {
                         name = item.displayName,
                         lat = item.lat,
                         lon = item.lng,
+                        objectiveTags = item.objectives,
                         clues = item.hints
                             .sortedBy { it.tier }
                             .map { h ->
