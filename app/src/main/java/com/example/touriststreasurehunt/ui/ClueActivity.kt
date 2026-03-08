@@ -27,6 +27,9 @@ import kotlin.math.max
 import android.annotation.SuppressLint
 import com.google.android.gms.tasks.CancellationTokenSource
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.heading
+import androidx.compose.ui.semantics.semantics
 
 class ClueActivity : ComponentActivity() {
 
@@ -257,28 +260,68 @@ private fun ClueScreen(
     }
 
     Column(Modifier.padding(16.dp)) {
-        Text(text = d.name, fontWeight = FontWeight.Bold)
+        Text(
+            text = d.name,
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier.semantics { heading() }
+        )
+
         Spacer(Modifier.height(8.dp))
-        Text(text = "Clue: ${currentClue.text}")
+
+        Text(
+            text = "Clue: ${currentClue.text}",
+            modifier = Modifier.semantics {
+                contentDescription = "Current clue: ${currentClue.text}"
+            }
+        )
+
         Spacer(Modifier.height(12.dp))
-        Text(text = "Distance (approx): " + (distanceMeters?.toInt()?.toString() ?: "—") + " m")
+
+        Text(
+            text = "Distance (approx): " + (distanceMeters?.toInt()?.toString() ?: "—") + " m",
+            modifier = Modifier.semantics {
+                contentDescription = "Distance to destination is " +
+                        (distanceMeters?.toInt()?.toString() ?: "unknown") + " meters"
+            }
+        )
+
         Spacer(Modifier.height(16.dp))
 
-        Button(onClick = {
-            fakeDistance = max(0, fakeDistance - 800)
-            if (fakeDistance <= currentClue.proximityMeters) promote()
-        }) { Text("Simulate Move Closer") }
+        Button(
+            onClick = {
+                fakeDistance = max(0, fakeDistance - 800)
+                if (fakeDistance <= currentClue.proximityMeters) promote()
+            },
+            modifier = Modifier.semantics {
+                contentDescription = "Simulate moving closer to the destination"
+            }
+        ) {
+            Text("Simulate Move Closer")
+        }
 
         Spacer(Modifier.height(8.dp))
-        OutlinedButton(onClick = { promote() }) {
+
+        OutlinedButton(
+            onClick = { promote() },
+            modifier = Modifier.semantics {
+                contentDescription = "Reveal the next clue manually"
+            }
+        ) {
             Text("Manual Reveal")
         }
 
         Spacer(Modifier.height(24.dp))
+
         if (!hasPermission) {
-            Text("Location is optional. Use Manual Reveal to continue.", style = MaterialTheme.typography.bodySmall)
+            Text(
+                "Location is optional. Use Manual Reveal to continue.",
+                style = MaterialTheme.typography.bodySmall
+            )
         } else if (lastLocationProvider() == null) {
-            Text("Getting location…", style = MaterialTheme.typography.bodySmall)
+            Text(
+                "Getting location…",
+                style = MaterialTheme.typography.bodySmall
+            )
         }
     }
 }
