@@ -7,7 +7,7 @@ import java.io.File
 object HuntDataStore {
 
     // Bump this when JSON changes
-    private const val SCHEMA_VERSION = 1
+    private const val SCHEMA_VERSION = 2
 
     private const val CACHE_FILE_NAME = "locations_hints_cache.json"
     private const val META_FILE_NAME = "locations_hints_meta.txt"
