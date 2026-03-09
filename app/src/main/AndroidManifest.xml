@@ -39,6 +39,10 @@
             android:exported="false" />
 
         <activity
+            android:name=".ui.DestinationRevealActivity"
+            android:exported="false" />
+
+        <activity
             android:name=".ui.FinishActivity"
             android:exported="false" />
 

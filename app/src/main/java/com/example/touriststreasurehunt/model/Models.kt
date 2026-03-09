@@ -13,7 +13,8 @@ data class Destination(
     val lat: Double,
     val lon: Double,
     val clues: List<Clue>,
-    val objectiveTags: List<String> = emptyList()
+    val objectiveTags: List<String> = emptyList(),
+    val funFact: String? = null
 )
 
 data class Hunt(
@@ -34,7 +35,8 @@ data class LocationHintItem(
     val lat: Double,
     val lng: Double,
     val objectives: List<String> = emptyList(),
-    val hints: List<LocationHint>
+    val hints: List<LocationHint>,
+    val funFact: String? = null
 )
 
 data class LocationHint(

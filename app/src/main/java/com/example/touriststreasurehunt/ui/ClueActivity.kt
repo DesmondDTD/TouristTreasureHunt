@@ -209,26 +209,50 @@ private fun ClueScreen(
 
     var fakeDistance by remember { mutableStateOf(4000) }
 
+    if (hunt.destinations.isEmpty()) {
+        Column(Modifier.padding(16.dp)) {
+            Text("No destinations available.")
+        }
+        return
+    }
+
     val d: Destination = hunt.destinations[destIdx]
     val currentClue = d.clues.first { it.tier == tier }
     val maxTier = d.clues.maxOf { it.tier }
 
+    val context = androidx.compose.ui.platform.LocalContext.current
+
     fun promote() {
+
         if (tier < maxTier) {
+
             tier++
+
         } else {
+
             if (destIdx < hunt.destinations.lastIndex) {
+
+                // Move to next destination
                 destIdx++
                 tier = 1
                 fakeDistance = 4000
+
             } else {
-                progressManager.clearProgress()
-                onComplete()
+
+                // HUNT COMPLETE → show reveal screen
+                val intent = android.content.Intent(
+                    context,
+                    DestinationRevealActivity::class.java
+                ).apply {
+                    putExtra("hunt_json", com.google.gson.Gson().toJson(hunt))
+                }
+
+                context.startActivity(intent)
+                (context as android.app.Activity).finish()
                 return
             }
         }
 
-        // SAVE progress every time state changes
         progressManager.saveProgress(
             destinationName = hunt.destinations[destIdx].name,
             clueIndex = tier
