@@ -1,5 +1,7 @@
 package com.example.touriststreasurehunt
 
+import androidx.compose.ui.test.assertCountEquals
+import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithText
@@ -23,12 +25,11 @@ class CoreUserFlowTest {
     }
 
     @Test
-    fun startHunt_opensNextScreen() {
+    fun startHunt_clickStart_doesNotStayOnObjectiveScreen() {
         composeTestRule.onNodeWithText("Scenic").performClick()
         composeTestRule.onNodeWithText("Start Hunt").performClick()
-
         composeTestRule.waitForIdle()
 
-        composeTestRule.onNodeWithText("Choose Objectives").assertDoesNotExist()
+        composeTestRule.onAllNodesWithText("Choose objectives").assertCountEquals(0)
     }
 }

@@ -223,40 +223,22 @@ private fun ClueScreen(
     val context = androidx.compose.ui.platform.LocalContext.current
 
     fun promote() {
-
         if (tier < maxTier) {
-
             tier++
-
-        } else {
-
-            if (destIdx < hunt.destinations.lastIndex) {
-
-                // Move to next destination
-                destIdx++
-                tier = 1
-                fakeDistance = 4000
-
-            } else {
-
-                // HUNT COMPLETE → show reveal screen
-                val intent = android.content.Intent(
-                    context,
-                    DestinationRevealActivity::class.java
-                ).apply {
-                    putExtra("hunt_json", com.google.gson.Gson().toJson(hunt))
-                }
-
-                context.startActivity(intent)
-                (context as android.app.Activity).finish()
-                return
-            }
+            progressManager.saveProgress(
+                destinationName = hunt.destinations[destIdx].name,
+                clueIndex = tier
+            )
+            return
         }
 
-        progressManager.saveProgress(
-            destinationName = hunt.destinations[destIdx].name,
-            clueIndex = tier
-        )
+        // Show reveal for the destination every time
+        val intent = android.content.Intent(context, DestinationRevealActivity::class.java).apply {
+            putExtra("hunt_json", com.google.gson.Gson().toJson(hunt))
+            putExtra("dest_index", destIdx)
+        }
+        context.startActivity(intent)
+        (context as android.app.Activity).finish()
     }
 
     // Calc distance from last known location

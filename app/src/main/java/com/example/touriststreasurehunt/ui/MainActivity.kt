@@ -27,11 +27,11 @@ class MainActivity : ComponentActivity() {
         val savedDestination = progressManager.getCurrentDestination()
         val savedClueIndex = progressManager.getCurrentClueIndex()
 
-        // 🔹 If saved progress exists → auto resume hunt
+        // If saved progress exists auto resume hunt
         if (savedDestination != null) {
 
             val repo = HuntRepository(this)
-            val destinations = repo.loadDestinations()
+            val allDestinations = repo.loadDestinations()
 
             val savedObjectiveIds = progressManager.getSelectedObjectives()
             val savedObjectives = if (savedObjectiveIds.isEmpty()) {
@@ -40,9 +40,15 @@ class MainActivity : ComponentActivity() {
                 MockRepo.objectives.filter { it.id in savedObjectiveIds }
             }
 
+            val filteredDestinations = filterDestinationsByObjectives(
+                all = allDestinations,
+                selected = savedObjectives,
+                allObjectiveCount = MockRepo.objectives.size
+            )
+
             val hunt = Hunt(
                 objectives = savedObjectives.ifEmpty { listOf(MockRepo.objectives[0]) },
-                destinations = destinations
+                destinations = filteredDestinations
             )
 
             val intent = Intent(this, ClueActivity::class.java)
