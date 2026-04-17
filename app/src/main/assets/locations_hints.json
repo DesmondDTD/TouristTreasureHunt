@@ -73,6 +73,126 @@
           "text": "Stand at the fenced overlook where waves surge into the rock bowl and spray shoots upward."
         }
       ]
+    },
+    {
+      "slug": "oregon_coast_aquarium",
+      "displayName": "Oregon Coast Aquarium",
+      "lat": 44.6217,
+      "lng": -124.0473,
+      "objectives": ["history"],
+      "hints": [
+        {
+          "tier": 1,
+          "proximity": "far",
+          "text": "A stop by the coast in Newport where offshore life and tidepools combine."
+        },
+        {
+          "tier": 2,
+          "proximity": "near",
+          "text": "You’re getting close when you see signs that point toward sea critters near South Beach."
+        },
+        {
+          "tier": 3,
+          "proximity": "very_near",
+          "text": "Stand by the entrance where the begin to lead toward underwater walkways, and tanks."
+        }
+      ]
+    },
+    {
+      "slug": "devils_punchbowl",
+      "displayName": "Devil’s Punchbowl",
+      "lat": 44.74686,
+      "lng": -124.0635,
+      "objectives": ["adventure"],
+      "hints": [
+        {
+          "tier": 1,
+          "proximity": "far",
+          "text": "A coastal formation where the ocean swirls in a giant stone bowl."
+        },
+        {
+          "tier": 2,
+          "proximity": "near",
+          "text": "You’re close when you see churning water and cliffs near Otter Rock."
+        },
+        {
+          "tier": 3,
+          "proximity": "very_near",
+          "text": "Stand by the overlook above the bowl where the water twists and turns below."
+        }
+      ]
+    },
+    {
+      "slug": "face_rock_viewpoint",
+      "displayName": "Face Rock",
+      "lat": 43.10678,
+      "lng": -124.43484,
+      "objectives": ["scenic"],
+      "hints": [
+        {
+          "tier": 1,
+          "proximity": "far",
+          "text": "A southern coast beach known for offshore rocks rising above the water."
+        },
+        {
+          "tier": 2,
+          "proximity": "near",
+          "text": "Look for sands near Bandon, where a rock is famous for resembling a face."
+        },
+        {
+          "tier": 3,
+          "proximity": "very_near",
+          "text": "Head to the beach overlook where the Face Rock lies just beyond the tide."
+        }
+      ]
+    },
+    {
+      "slug": "astoria_column",
+      "displayName": "Astoria Column",
+      "lat": 46.18131,
+      "lng": -123.81756,
+      "objectives": ["history"],
+      "hints": [
+        {
+          "tier": 1,
+          "proximity": "far",
+          "text": "A hilltop landmark in a northern coast town where the hills, river, and ocean all meet."
+        },
+        {
+          "tier": 2,
+          "proximity": "near",
+          "text": "Above Astoria a tall monument overlooks the bridge and the Columbia."
+        },
+        {
+          "tier": 3,
+          "proximity": "very_near",
+          "text": "Stand at the base of the spiraling tower where a nice view lies in all directions."
+        }
+      ]
+    },
+    {
+      "slug": "cape_arago_viewpoint",
+      "displayName": "Cape Arago State Park",
+      "lat": 43.30622,
+      "lng": -124.39345,
+      "objectives": ["adventure"],
+      "hints": [
+        {
+          "tier": 1,
+          "proximity": "far",
+          "text": "A stretch of coast where the pounding waves and cliffs frame the open waters."
+        },
+        {
+          "tier": 2,
+          "proximity": "near",
+          "text": "You know you're getting close when the road south of Coos Bay leads you to wildlife and ocean viewing areas."
+        },
+        {
+          "tier": 3,
+          "proximity": "very_near",
+          "text": "Head to the cliffside viewpoint where the waves slam against the rocks below."
+        }
+      ]
     }
   ]
 }

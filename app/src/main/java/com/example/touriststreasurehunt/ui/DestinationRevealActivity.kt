@@ -52,12 +52,14 @@ class DestinationRevealActivity : ComponentActivity() {
 
         val hunt = Gson().fromJson(huntJson, Hunt::class.java)
         val destination = hunt.destinations[destIndex]
+        val isLast = destIndex >= hunt.destinations.lastIndex
 
         setContent {
             MaterialTheme {
                 RevealScreen(
                     destinationName = destination.name,
                     funFact = destination.funFact,
+                    isLast = isLast,
                     onOpenMaps = { openMaps(destination.lat, destination.lon, destination.name) },
                     onContinue = {
                         val pm = ProgressManager(this)
@@ -93,6 +95,7 @@ class DestinationRevealActivity : ComponentActivity() {
 fun RevealScreen(
     destinationName: String,
     funFact: String?,
+    isLast: Boolean,
     onOpenMaps: () -> Unit,
     onContinue: () -> Unit
 ) {
@@ -135,7 +138,7 @@ fun RevealScreen(
         Spacer(Modifier.height(32.dp))
 
         Button(onClick = onContinue) {
-            Text("Continue Hunt")
+            Text(if (isLast) "Finish Hunt" else "Continue Hunt")
         }
     }
 }
