@@ -193,6 +193,131 @@
           "text": "Head to the cliffside viewpoint where the waves slam against the rocks below."
         }
       ]
+    },
+    {
+      "slug": "ecola_state_park",
+      "displayName": "Ecola State Park",
+      "lat": 45.94073,
+      "lng": -123.98574,
+      "objectives": ["scenic", "adventure"],
+      "hints": [
+        {
+          "tier": 1,
+          "proximity": "far",
+          "text": "A coastal park north of a well-known beach with dramatic ocean views."
+        },
+        {
+          "tier": 2,
+          "proximity": "near",
+          "text": "Look for trails leading to overlooks of sea stacks and cliffs."
+        },
+        {
+          "tier": 3,
+          "proximity": "very_near",
+          "text": "You’re near a viewpoint where the coastline stretches wide and rugged."
+        }
+      ]
+    },
+    {
+      "slug": "yaquina_head_lighthouse",
+      "displayName": "Yaquina Head Lighthouse",
+      "lat": 44.67854,
+      "lng": -124.07878,
+      "objectives": ["scenic", "history"],
+      "hints": [
+        {
+          "tier": 1,
+          "proximity": "far",
+          "text": "A historic light guiding ships along a rocky stretch of coastline."
+        },
+        {
+          "tier": 2,
+          "proximity": "near",
+          "text": "You’re close when you see tide pools and a tall white tower on a headland."
+        },
+        {
+          "tier": 3,
+          "proximity": "very_near",
+          "text": "Stand near the base of the lighthouse overlooking the crashing waves below."
+        }
+      ]
+    },
+    {
+      "slug": "short_sand_beach",
+      "displayName": "Short Sand Beach",
+      "lat": 45.76341,
+      "lng": -123.96736,
+      "objectives": ["scenic", "adventure"],
+      "hints": [
+        {
+          "tier": 1,
+          "proximity": "far",
+          "text": "A hidden beach reached by walking through a forest along the coast."
+        },
+        {
+          "tier": 2,
+          "proximity": "near",
+          "text": "You’re close when you see surfers and cliffs surrounding a small cove."
+        },
+        {
+          "tier": 3,
+          "proximity": "very_near",
+          "text": "You’ve reached the sandy cove where waves roll in between the cliffs."
+        }
+      ]
+    },
+    {
+      "slug": "tillamook_creamery",
+      "displayName": "Tillamook Creamery",
+      "lat": 45.48412,
+      "lng": -123.84421,
+      "objectives": ["history"],
+      "hints": [
+        {
+          "tier": 1,
+          "proximity": "far",
+          "text": "A well-known stop along the coast famous for dairy products and fresh treats."
+        },
+        {
+          "tier": 2,
+          "proximity": "near",
+          "text": "You’re getting close when you see a large facility where visitors can watch food being made."
+        },
+        {
+          "tier": 3,
+          "proximity": "very_near",
+          "text": "You’ve arrived where cheese and ice cream are made fresh every day."
+        }
+      ]
+    },
+    {
+      "slug": "depoe_bay_whale_watching_center",
+      "displayName": "Depoe Bay Whale Watching Center",
+      "lat": 44.81016,
+      "lng": -124.06236,
+      "objectives": ["scenic", "history"],
+      "hints": [
+        {
+          "tier": 1,
+          "proximity": "far",
+          "text": "A coastal town known for spotting marine life along the shoreline."
+        },
+        {
+          "tier": 2,
+          "proximity": "near",
+          "text": "You’re close when you see viewpoints overlooking a small harbor with crashing waves."
+        },
+        {
+          "tier": 3,
+          "proximity": "very_near",
+          "text": "Stand near the viewing center where whales are often seen just offshore."
+        }
+      ]
     }
   ]
 }
+
+
+
+
+
