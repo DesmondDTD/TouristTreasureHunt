@@ -11,6 +11,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.compose.foundation.layout.navigationBarsPadding
 import com.example.touriststreasurehunt.model.Hunt
 import com.google.gson.Gson
 import com.example.touriststreasurehunt.data.ProgressManager
@@ -103,42 +105,65 @@ fun RevealScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(24.dp),
+            .padding(24.dp)
+            .navigationBarsPadding(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
 
+        // 🎉 Title
         Text(
             text = "🎉 Location Found!",
             style = MaterialTheme.typography.headlineMedium,
             fontWeight = FontWeight.Bold
         )
 
-        Spacer(Modifier.height(16.dp))
+        Spacer(Modifier.height(20.dp))
 
+        // Destination name
         Text(
             text = destinationName,
-            style = MaterialTheme.typography.titleLarge
+            style = MaterialTheme.typography.titleLarge,
+            fontWeight = FontWeight.SemiBold
         )
 
         Spacer(Modifier.height(24.dp))
 
+        // Fun fact
         funFact?.let {
-            Text("Fun Fact:", fontWeight = FontWeight.Bold)
+            Text(
+                text = "Fun Fact",
+                style = MaterialTheme.typography.titleMedium,
+                fontWeight = FontWeight.SemiBold
+            )
+
             Spacer(Modifier.height(8.dp))
-            Text(it)
+
+            Text(
+                text = it,
+                style = MaterialTheme.typography.bodyMedium,
+                lineHeight = 20.sp
+            )
+
+            Spacer(Modifier.height(24.dp))
         }
 
-        OutlinedButton(onClick = onOpenMaps) {
+        // 🗺 Maps button
+        OutlinedButton(
+            onClick = onOpenMaps,
+            modifier = Modifier.fillMaxWidth()
+        ) {
             Text("Open in Maps")
         }
 
-        Spacer(Modifier.height(12.dp))
+        Spacer(Modifier.height(16.dp))
 
-        Spacer(Modifier.height(32.dp))
-
-        Button(onClick = onContinue) {
-            Text(if (isLast) "Finish Hunt" else "Continue Hunt")
+        // Continue button
+        Button(
+            onClick = onContinue,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text(if (isLast) "Complete Hunt" else "Next Location")
         }
     }
 }
