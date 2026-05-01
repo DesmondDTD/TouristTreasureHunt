@@ -313,11 +313,129 @@
           "text": "Stand near the viewing center where whales are often seen just offshore."
         }
       ]
-    }
-  ]
+    },
+    {
+      "slug": "gods_thumb",
+      "displayName": "God’s Thumb",
+      "lat": 44.9716,
+      "lng": -124.0185,
+      "objectives": ["scenic", "adventure"],
+      "hints": [
+        {
+          "tier": 1,
+          "proximity": "far",
+          "text": "A hidden coastal hike near Lincoln City that leads to a grassy cliff with unreal views."
+        },
+        {
+          "tier": 2,
+          "proximity": "near",
+          "text": "You’re close when forest trails open up and you begin to see the coastline far below."
+        },
+        {
+          "tier": 3,
+          "proximity": "very_near",
+          "text": "Stand on the narrow grassy ridge where the land drops steeply and the ocean stretches endlessly."
+        }
+      ]
+      },
+      {
+        "slug": "secret_beach",
+        "displayName": "Secret Beach (Samuel H. Boardman)",
+        "lat": 42.0336,
+        "lng": -124.2997,
+        "objectives": ["adventure", "scenic"],
+        "hints": [
+          {
+            "tier": 1,
+            "proximity": "far",
+            "text": "A hidden coastal spot reached by a steep trail in southern Oregon."
+          },
+          {
+            "tier": 2,
+            "proximity": "near",
+            "text": "You’re close when you hear waves below but can’t see the beach yet."
+          },
+          {
+            "tier": 3,
+            "proximity": "very_near",
+            "text": "Descend to a quiet beach with sea stacks rising just offshore."
+          }
+        ]
+      },
+      {
+        "slug": "hug_point",
+        "displayName": "Hug Point",
+        "lat": 45.8170,
+        "lng": -123.9686,
+        "objectives": ["scenic", "history"],
+        "hints": [
+          {
+            "tier": 1,
+            "proximity": "far",
+            "text": "A coastal stop where travelers once had to stay close to the cliffs."
+          },
+          {
+            "tier": 2,
+            "proximity": "near",
+            "text": "Look for a beach where the tide reveals old wagon tracks."
+          },
+          {
+            "tier": 3,
+            "proximity": "very_near",
+            "text": "Walk along the cliff edge to find a hidden waterfall meeting the sand."
+          }
+        ]
+      },
+      {
+        "slug": "devils_churn",
+        "displayName": "Devil’s Churn",
+        "lat": 44.2779,
+        "lng": -124.1139,
+        "objectives": ["adventure"],
+        "hints": [
+          {
+            "tier": 1,
+            "proximity": "far",
+            "text": "A rugged coastal feature where waves crash violently into a narrow inlet."
+          },
+          {
+            "tier": 2,
+            "proximity": "near",
+            "text": "You’re close when you hear thunder-like waves echoing through rock."
+          },
+          {
+            "tier": 3,
+            "proximity": "very_near",
+            "text": "Stand above the chasm where water surges and churns below."
+          }
+        ]
+      },
+      {
+        "slug": "cape_kiwanda",
+        "displayName": "Cape Kiwanda",
+        "lat": 45.2165,
+        "lng": -123.9743,
+        "objectives": ["scenic", "adventure"],
+        "hints": [
+          {
+            "tier": 1,
+            "proximity": "far",
+            "text": "A sandy cape known for cliffs, waves, and a massive offshore rock."
+          },
+          {
+            "tier": 2,
+            "proximity": "near",
+            "text": "You’re close when a giant dune rises above the coastline."
+          },
+          {
+            "tier": 3,
+            "proximity": "very_near",
+            "text": "Climb the dune and look out toward the ocean and Haystack Rock offshore."
+          }  
+        ]
+  }
+]
 }
-
-
 
 
 
