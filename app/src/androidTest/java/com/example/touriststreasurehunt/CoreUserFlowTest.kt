@@ -1,5 +1,6 @@
 package com.example.touriststreasurehunt
 
+// Important imports
 import androidx.compose.ui.test.assertCountEquals
 import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.assertIsDisplayed

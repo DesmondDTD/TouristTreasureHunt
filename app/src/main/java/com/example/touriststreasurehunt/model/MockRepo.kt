@@ -10,6 +10,7 @@ object MockRepo {
     )
 
     // Examples
+    /* DONT NEED ANYMORE
     val sample = listOf(
         Destination(
             name = "Coast Coffee",
@@ -32,4 +33,6 @@ object MockRepo {
     )
 
     fun makeHunt(sel: List<Objective>) = Hunt(sel, sample)
+
+     */
 }

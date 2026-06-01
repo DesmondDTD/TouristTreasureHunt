@@ -1,5 +1,5 @@
 package com.example.touriststreasurehunt.ui
-
+// Important imports
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -111,7 +111,7 @@ fun RevealScreen(
         verticalArrangement = Arrangement.Center
     ) {
 
-        // 🎉 Title
+        // Title
         Text(
             text = "🎉 Location Found!",
             style = MaterialTheme.typography.headlineMedium,
@@ -148,7 +148,7 @@ fun RevealScreen(
             Spacer(Modifier.height(24.dp))
         }
 
-        // 🗺 Maps button
+        // Maps button
         OutlinedButton(
             onClick = onOpenMaps,
             modifier = Modifier.fillMaxWidth()

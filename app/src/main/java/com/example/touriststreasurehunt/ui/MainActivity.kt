@@ -59,7 +59,7 @@ class MainActivity : ComponentActivity() {
             return
         }
 
-        // 🔹 Normal start screen
+        // Normal start screen
         setContent {
             MaterialTheme {
                 MainScreen { selected, destinations ->

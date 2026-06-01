@@ -13,7 +13,7 @@ object HuntDataStore {
     private const val META_FILE_NAME = "locations_hints_meta.txt"
     private const val ASSET_FILE_NAME = "locations_hints.json"
 
-    // Offline first: load cached JSON, otherwise copy from assets into cache and return
+    // Offline first... load cached JSON or copy from assets into cache and return
     fun loadJson(context: Context): String {
         val cache = File(context.filesDir, CACHE_FILE_NAME)
         val meta = File(context.filesDir, META_FILE_NAME)
@@ -33,7 +33,7 @@ object HuntDataStore {
         return fresh
     }
 
-    // Optional force cache refresh from assets (good for debugging)
+    // Optional force cache refresh from assets
     fun refreshFromAssets(context: Context): String {
         val cache = File(context.filesDir, CACHE_FILE_NAME)
         val meta = File(context.filesDir, META_FILE_NAME)
@@ -44,7 +44,7 @@ object HuntDataStore {
         return fresh
     }
 
-    // Optional clear cache (good for testing)
+    // Optional clear cache
     fun clearCache(context: Context) {
         File(context.filesDir, CACHE_FILE_NAME).delete()
         File(context.filesDir, META_FILE_NAME).delete()

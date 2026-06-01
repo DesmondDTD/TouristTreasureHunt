@@ -14,6 +14,9 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -35,10 +38,13 @@ class ClueActivity : ComponentActivity() {
 
     private lateinit var fused: FusedLocationProviderClient
     private val req = LocationRequest.Builder(
-        Priority.PRIORITY_BALANCED_POWER_ACCURACY, 10_000L
-    ).setMinUpdateIntervalMillis(5_000L).build()
+        Priority.PRIORITY_HIGH_ACCURACY, 5_000L
+    )
+        .setMinUpdateIntervalMillis(2_000L)
+        .setMinUpdateDistanceMeters(0f)
+        .build()
 
-    private var _lastLocation: Location? = null
+    private var _lastLocation by mutableStateOf<Location?>(null)
 
     private val cb = object : LocationCallback() {
         override fun onLocationResult(res: LocationResult) {
@@ -152,15 +158,30 @@ class ClueActivity : ComponentActivity() {
     @SuppressLint("MissingPermission")
     private fun startLocation() {
         if (!hasAnyLocationPermission()) return
-        try {
-            // Seed one-shot UI shows a distance quick
-            val cts = CancellationTokenSource()
-            fused.getCurrentLocation(Priority.PRIORITY_BALANCED_POWER_ACCURACY, cts.token)
-                .addOnSuccessListener { loc -> _lastLocation = loc }
 
-            // Continuous updates
+        try {
+            // Subscribe to continuous GPS updates
             fused.requestLocationUpdates(req, cb, mainLooper)
-        } catch (_: SecurityException) { /* permission revoked mid-call; ignore */ }
+
+            // Seed with last known location if available
+            fused.lastLocation.addOnSuccessListener { loc ->
+                if (loc != null) {
+                    _lastLocation = loc
+                }
+            }
+
+            // Also request a fresh one-shot location
+            val cts = CancellationTokenSource()
+            fused.getCurrentLocation(Priority.PRIORITY_HIGH_ACCURACY, cts.token)
+                .addOnSuccessListener { loc ->
+                    if (loc != null) {
+                        _lastLocation = loc
+                    }
+                }
+
+        } catch (_: SecurityException) {
+            // Permission revoked mid-call; ignore safely
+        }
     }
 
 
@@ -292,20 +313,6 @@ private fun ClueScreen(
         )
 
         Spacer(Modifier.height(16.dp))
-
-        Button(
-            onClick = {
-                fakeDistance = max(0, fakeDistance - 800)
-                if (fakeDistance <= currentClue.proximityMeters) promote()
-            },
-            modifier = Modifier.semantics {
-                contentDescription = "Simulate moving closer to the destination"
-            }
-        ) {
-            Text("Simulate Move Closer")
-        }
-
-        Spacer(Modifier.height(8.dp))
 
         OutlinedButton(
             onClick = { promote() },

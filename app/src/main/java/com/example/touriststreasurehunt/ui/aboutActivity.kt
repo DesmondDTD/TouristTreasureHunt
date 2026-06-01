@@ -1,5 +1,5 @@
 package com.example.touriststreasurehunt.ui
-
+// Important imports
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -59,7 +59,7 @@ fun AboutScreen(onBack: () -> Unit) {
             )
             Spacer(modifier = Modifier.height(16.dp))
             Text(
-                text = "Version 0.4.0",
+                text = "Version 0.6.0",
                 style = MaterialTheme.typography.bodyMedium,
                 fontSize = 16.sp
             )
